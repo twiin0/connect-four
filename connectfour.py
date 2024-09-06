@@ -6,6 +6,16 @@ GREEN = '\033[32m'
 BLUE = '\033[34m'
 RESET = '\033[0m' # called to return to standard terminal text color
 
+# Connect Four messages
+connect_four_message = GREEN+"""
+   ______     ___     ____  _____   ____  _____   ________     ______   _________     ________     ___     _____  _____   _______     
+ .' ___  |  .'   `.  |_   \|_   _| |_   \|_   _| |_   __  |  .' ___  | |  _   _  |   |_   __  |  .'   `.  |_   _||_   _| |_   __ \    
+/ .'   \_| /  .-.  \   |   \ | |     |   \ | |     | |_ \_| / .'   \_| |_/ | | \_|     | |_ \_| /  .-.  \   | |    | |     | |__) |   
+| |        | |   | |   | |\ \| |     | |\ \| |     |  _| _  | |            | |         |  _|    | |   | |   | '    ' |     |  __ /    
+\ `.___.'\ \  `-'  /  _| |_\   |_   _| |_\   |_   _| |__/ | \ `.___.'\    _| |_       _| |_     \  `-'  /    \ \__/ /     _| |  \ \_  
+ `.____ .'  `.___.'  |_____|\____| |_____|\____| |________|  `.____ .'   |_____|     |_____|     `.___.'      `.__.'     |____| |___| 
+"""+RESET
+
 player_one_wins = RED+"""
  __                 ___  __      __        ___                 __     
 |__) |     /\  \ / |__  |__)    /  \ |\ | |__     |  | | |\ | /__`    
@@ -102,3 +112,12 @@ def place_checker(player_move, player):
                 connect_four_victory = True
             return
     print("Column full, try another column.")
+
+while not connect_four_victory:
+    print_gap(35)   
+    print(connect_four_message)
+    print_board(connect_four_board)
+    player = 1 if player1 else 2
+    player_input = get_input()
+    place_checker(player_input, player)
+    player1 = not player1
