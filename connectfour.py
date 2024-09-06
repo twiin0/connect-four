@@ -27,3 +27,18 @@ def print_board(board):
             print(GREEN+" [ "+RESET+x+GREEN+" ] "+RESET, end='')
         print()
     print("   1      2      3      4      5      6      7\n")
+
+def get_input():
+    print("Choose the column number where you would like to place your checker (1-7):")
+    while True:
+        try:
+            player_move = int(input("> "))
+        except ValueError:
+            print("Invalid input, please enter a number.")
+            continue
+
+        if player_move < 1 or player_move > 7:
+            print("Move is out of bounds, please enter a number between 1 and 7.")
+            continue
+        else:
+            return player_move - 1
