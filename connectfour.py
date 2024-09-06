@@ -6,10 +6,29 @@ GREEN = '\033[32m'
 BLUE = '\033[34m'
 RESET = '\033[0m' # called to return to standard terminal text color
 
+player_one_wins = RED+"""
+ __                 ___  __      __        ___                 __     
+|__) |     /\  \ / |__  |__)    /  \ |\ | |__     |  | | |\ | /__`    
+|    |___ /~~\  |  |___ |  \    \__/ | \| |___    |/\| | | \| .__/                                                                      
+"""+RESET
+
+player_two_wins = BLUE+"""
+ __                 ___  __     ___       __                  __     
+|__) |     /\  \ / |__  |__)     |  |  | /  \    |  | | |\ | /__`    
+|    |___ /~~\  |  |___ |  \     |  |/\| \__/    |/\| | | \| .__/                                                                         
+"""+RESET
+
+# Victory bool
+connect_four_victory = False
+
 # Connect Four board dimensions
 columns = 7
 rows = 6
 connect_four_board = [[0 for _ in range(columns)] for _ in range(rows)]
+
+def print_gap(num):
+    for _ in range(num):
+        print()
 
 def index_to_checker(board, row, column):
     if board[row][column] == 0:
