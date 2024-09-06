@@ -42,3 +42,44 @@ def get_input():
             continue
         else:
             return player_move - 1
+        
+def check_victory(board, player):
+    def check_line(row, col, delta_row, delta_col):
+        count = 0
+        for _ in range(4):
+            if 0 <= row < rows and 0 <= col < columns and board[row][col] == player:
+                count += 1
+                row += delta_row
+                col += delta_col
+            else:
+                break
+        return count == 4
+
+    # Check horizontal, vertical, and diagonal directions
+    for row in range(rows):
+        for col in range(columns):
+            if check_line(row, col, 0, 1):  # Check horizontal
+                return True
+            if check_line(row, col, 1, 0):  # Check vertical
+                return True
+            if check_line(row, col, 1, 1):  # Check positive slope diagonal
+                return True
+            if check_line(row, col, 1, -1): # Check negative slope diagonal
+                return True
+    return False
+
+def place_checker(player_move, player):
+    global connect_four_victory
+    for i in range(rows - 1, -1, -1):  # Iterate from bottom to top, including row 0
+        if connect_four_board[i][player_move] == 0:
+            connect_four_board[i][player_move] = player
+            if check_victory(connect_four_board, player):
+                print_gap(40)
+                if player == 1:
+                    print(player_one_wins)
+                elif player == 2:
+                    print(player_two_wins)
+                print_board(connect_four_board)
+                connect_four_victory = True
+            return
+    print("Column full, try another column.")
