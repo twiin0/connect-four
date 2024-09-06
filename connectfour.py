@@ -1,3 +1,11 @@
+import os
+
+# Colour Pallette + RESET
+RED = '\033[31m'
+GREEN = '\033[32m'
+BLUE = '\033[34m'
+RESET = '\033[0m' # called to return to standard terminal text color
+
 # Connect Four board dimensions
 columns = 7
 rows = 6
