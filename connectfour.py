@@ -113,6 +113,8 @@ def place_checker(player_move, player):
             return
     print("Column full, try another column.")
 
+player1 = True
+
 while not connect_four_victory:
     print_gap(35)   
     print(connect_four_message)
